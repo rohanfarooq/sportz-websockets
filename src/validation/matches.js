@@ -6,9 +6,8 @@ export const MATCH_STATUS = {
     FINISHED: 'finished',
 };
 
-const isoDateString = z.string().refine((val) => !isNaN(Date.parse(val)), {
-    message: 'Invalid ISO date string',
-})
+const isoDateString = z.iso.datetime()
+
 export const listMatchesQuerySchema = z.object({
     limit: z.coerce.number().int().positive().max(100).optional(),
 });
